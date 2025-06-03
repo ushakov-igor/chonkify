@@ -1,6 +1,6 @@
 {
   "name": "@ushakov-igor/chonk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Ultra-lightweight chunker for everything — arrays, strings, sets, maps, async iterables and more.",
   "main": "index.js",
   "type": "module",
