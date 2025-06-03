@@ -1,5 +1,5 @@
 {
-  "name": "@ushakov-igor/chonk",
+  "name": "chonkify",
   "version": "1.0.4",
   "description": "Ultra-lightweight chunker for everything — arrays, strings, sets, maps, async iterables and more.",
   "main": "index.js",
@@ -30,12 +30,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ushakov-igor/chonk.git"
+    "url": "git+https://github.com/ushakov-igor/chonkify.git"
   },
   "bugs": {
-    "url": "https://github.com/ushakov-igor/chonk/issues"
+    "url": "https://github.com/ushakov-igor/chonkify/issues"
   },
-  "homepage": "https://github.com/ushakov-igor/chonk#readme",
+  "homepage": "https://github.com/ushakov-igor/chonkify#readme",
   "scripts": {
     "test": "node test/basic.test.js"
   }
