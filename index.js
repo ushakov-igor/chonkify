@@ -1,3 +1,3 @@
+export function chonk(i,s){if(i==null||+s<1)throw Error('Invalid input');if(typeof i=='string'){if(!i.length)return[];let c=Intl?.Segmenter?Array.from(new Intl.Segmenter(0,{granularity:'grapheme'}).segment(i),s=>s.segment):Array.from(i),r=[];for(let j=0;j<c.length;j+=s)r.push(c.slice(j,j+s).join(''));return r}if(Array.isArray(i)||ArrayBuffer.isView(i)){if(!i.length)return[];let r=[];for(let j=0;j<i.length;j+=s)r.push(i.slice(j,j+s));return r}if(typeof i=='object'){try{if(i[Symbol.iterator])return chonk([...i],s)}catch(e){}if(i&&+i.length>-1){if(!i.length)return[];let a=[];for(let j=0;j<i.length;j++)a[j]=i[j];return chonk(a,s)}}throw Error('Invalid type')}
 
-export { chonk } from './src/sync.js';
-export { chonkAsync } from './src/async.js';
+export async function* chonkAsync(i,s){if(i==null||+s<1||!i[Symbol.asyncIterator])throw Error('Invalid input');let b=[];for await(const t of i){b.push(t);if(b.length>=s){yield b;b=[]}}if(b.length)yield b}

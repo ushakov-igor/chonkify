@@ -1,6 +1,6 @@
 {
   "name": "@ushakov-igor/chonk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Ultra-lightweight chunker for everything — arrays, strings, sets, maps, async iterables and more.",
   "main": "index.js",
   "type": "module",
@@ -11,8 +11,7 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "LICENSE",
-    "src/"
+    "LICENSE"
   ],
   "keywords": [
     "chunk",

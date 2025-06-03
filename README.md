@@ -17,7 +17,8 @@ npm install chonk
 
 - Works with: Array, String, Buffer, Set, Map, Array-like, TypedArray
 - Supports `AsyncIterable` (`for await`)
-- < 500 bytes
+- Correctly handles Unicode emoji characters and complex symbols 👨‍👩‍👧‍👦 🏳️‍🌈 🎉
+- < 1 kB
 - No dependencies
 - ESM-first, TypeScript-ready
 
@@ -26,8 +27,13 @@ npm install chonk
 ```js
 import { chonk, chonkAsync } from 'chonk';
 
+// Basic examples
 chonk([1, 2, 3, 4], 2); // [[1, 2], [3, 4]]
 chonk('abcdef', 2);     // ['ab', 'cd', 'ef']
+
+// Unicode emoji support
+chonk('👍👌✌️😀', 2);  // ['👍👌', '✌️😀']
+chonk('👨‍👩‍👧‍👦🏳️‍🌈', 1); // ['👨‍👩‍👧‍👦', '🏳️‍🌈']
 
 // Async:
 for await (const group of chonkAsync(fetchLines(), 100)) {
