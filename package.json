@@ -1,7 +1,6 @@
-
 {
   "name": "@ushakov-igor/chonk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ultra-lightweight chunker for everything — arrays, strings, sets, maps, async iterables and more.",
   "main": "index.js",
   "type": "module",
@@ -9,12 +8,24 @@
     "import": "./index.js"
   },
   "types": "index.d.ts",
-  "keywords": ["chunk", "utility", "array", "string", "set", "map", "iterable", "tiny", "async", "stream", "split"],
+  "keywords": [
+    "chunk",
+    "utility",
+    "array",
+    "string",
+    "set",
+    "map",
+    "iterable",
+    "tiny",
+    "async",
+    "stream",
+    "split"
+  ],
   "author": "ushakov-igor",
   "license": "MIT",
   "repository": {
-  "type": "git",
-  "url": "git+https://github.com/ushakov-igor/chonk.git"
+    "type": "git",
+    "url": "git+https://github.com/ushakov-igor/chonk.git"
   },
   "bugs": {
     "url": "https://github.com/ushakov-igor/chonk/issues"

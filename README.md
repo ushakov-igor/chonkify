@@ -1,7 +1,7 @@
 # 🐱 chonk
-![npm version](https://img.shields.io/npm/v/@ushakov-igor/chonk?style=flat-square)
-![license](https://img.shields.io/npm/l/@ushakov-igor/chonk?style=flat-square)
-![build status](https://github.com/ushakov-igor/chonk/actions/workflows/ci.yml/badge.svg?style=flat-square)
+[![npm version](https://img.shields.io/npm/v/@ushakov-igor/chonk?style=flat-square)](https://www.npmjs.com/package/@ushakov-igor/chonk)
+[![license](https://img.shields.io/npm/l/@ushakov-igor/chonk?style=flat-square)](https://github.com/ushakov-igor/chonk/blob/main/LICENSE)
+[![build status](https://github.com/ushakov-igor/chonk/actions/workflows/ci.yml/badge.svg?style=flat-square)](https://github.com/ushakov-igor/chonk/actions)
 
 > Ultra-lightweight chunker for everything — arrays, strings, sets, maps, async iterables and more.
 
