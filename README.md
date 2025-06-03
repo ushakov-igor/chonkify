@@ -5,7 +5,7 @@
 
 > Ultra-lightweight chunker for everything — arrays, strings, sets, maps, async iterables and more.
 
-![logo](https://raw.githubusercontent.com/ushakov-igor/chonkify/refs/heads/main/logo.svg)
+![logo](https://raw.githubusercontent.com/ushakov-igor/chonkify/refs/heads/main/chonkify.svg)
 
 ## 📦 Install
 
