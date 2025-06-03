@@ -1,6 +1,6 @@
 {
   "name": "chonkify",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Ultra-lightweight chunker for everything — arrays, strings, sets, maps, async iterables and more.",
   "main": "index.js",
   "type": "module",
