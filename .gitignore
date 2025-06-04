@@ -1,0 +1,91 @@
+# Dependencies
+node_modules/
+jspm_packages/
+bower_components/
+
+# Build outputs
+dist/
+build/
+out/
+.output/
+*.min.js
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Environment & config
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+.npmrc
+.yarnrc
+config.local.js
+credentials.json
+
+# Cache & temporary files
+.npm
+.eslintcache
+.stylelintcache
+.node_repl_history
+.DS_Store
+.sass-cache
+.cache/
+*.tsbuildinfo
+.tmp/
+tmp/
+temp/
+.cache-loader/
+
+# Coverage & test
+coverage/
+.coverage/
+.nyc_output/
+lib-cov/
+*.lcov
+.grunt
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.sublime-*
+.project
+.settings/
+.classpath
+*.iml
+*.ipr
+*.iws
+.c9/
+.history/
+.AppleDouble
+.LSOverride
+
+# Debug files
+.debug
+*.debug.js
+debug.log
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent 

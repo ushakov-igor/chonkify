@@ -1,0 +1,18 @@
+# Run minification before push
+echo "Minifying code before push..."
+npm run minify:terser
+
+# Check if minification succeeded
+if [ $? -eq 0 ]; then
+  # Check if index.js has changed
+  if [ -n "$(git diff index.js)" ]; then
+    echo "Changes detected in index.js, adding to commit"
+    git add index.js
+    git commit --amend --no-edit
+  else
+    echo "No changes in index.js"
+  fi
+else
+  echo "Error during code minification"
+  exit 1
+fi 
