@@ -1,6 +1,6 @@
 # Run minification before push
 echo "Minifying code before push..."
-npm run minify:terser
+npm run minify
 
 # Check if minification succeeded
 if [ $? -eq 0 ]; then

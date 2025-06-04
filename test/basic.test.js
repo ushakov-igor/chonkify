@@ -1,4 +1,4 @@
-import { chonk, chonkAsync } from '../index.js';
+import { chonk, chonkAsync, chonkGraphemes } from '../index.js';
 
 // Basic tests
 console.assert(JSON.stringify(chonk([1, 2, 3, 4], 2)) === JSON.stringify([[1, 2], [3, 4]]));
@@ -28,26 +28,40 @@ console.assert(JSON.stringify(chonk('', 2)) === JSON.stringify([]));
 console.assert(JSON.stringify(chonk([1, 2, 3], 10)) === JSON.stringify([[1, 2, 3]]));
 console.assert(JSON.stringify(chonk([1, 2, 3], 1)) === JSON.stringify([[1], [2], [3]]));
 
-// Emoji test
+// ----- Emoji tests -----
+
+// Standard chonk with emoji (UTF-16 code points)
 const emojiString = '👍👌✌️😀🙌👏';
 
-const expectedEmojiChunks = ['👍👌', '✌️😀', '🙌👏'];
-const emojiChunks = chonk(emojiString, 2);
+// Test chonk behavior (standard UTF-16 splitting)
+const emojiChunksStandard = chonk(emojiString, 2);
+// This should split at code point level, not grapheme level
+console.assert(emojiChunksStandard.length > 3, "chonk should split by code points, not graphemes");
 
-console.assert(JSON.stringify(emojiChunks) === JSON.stringify(expectedEmojiChunks));
+// Test chonkGraphemes behavior
+const expectedEmojiChunks = ['👍👌', '✌️😀', '🙌👏'];
+const emojiChunksGraphemes = chonkGraphemes(emojiString, 2);
+console.assert(JSON.stringify(emojiChunksGraphemes) === JSON.stringify(expectedEmojiChunks), 
+               "chonkGraphemes should correctly split emoji graphemes");
 
 const complexEmojiString = '👨‍👩‍👧‍👦👩‍💻🏳️‍🌈';
 
-const expectedComplexChunks = ['👨‍👩‍👧‍👦', '👩‍💻', '🏳️‍🌈'];
-const complexEmojiChunks = chonk(complexEmojiString, 1);
+// Test chonk with complex emojis
+const complexEmojiChunksStandard = chonk(complexEmojiString, 5);
+console.assert(complexEmojiChunksStandard.length >= 3, 
+               "chonk should split complex emojis into multiple code points");
 
-console.assert(JSON.stringify(complexEmojiChunks) === JSON.stringify(expectedComplexChunks));
+// Test chonkGraphemes with complex emojis
+const expectedComplexChunks = ['👨‍👩‍👧‍👦', '👩‍💻', '🏳️‍🌈'];
+const complexEmojiChunksGraphemes = chonkGraphemes(complexEmojiString, 1);
+console.assert(JSON.stringify(complexEmojiChunksGraphemes) === JSON.stringify(expectedComplexChunks),
+               "chonkGraphemes should correctly handle complex emojis as single graphemes");
 
 const mixedEmojiString = '👨‍👩‍👧‍👦👩‍💻🏳️‍🌈😀👍';
 const expectedMixedChunks = ['👨‍👩‍👧‍👦👩‍💻', '🏳️‍🌈😀', '👍'];
-const mixedEmojiChunks = chonk(mixedEmojiString, 2);
-
-console.assert(JSON.stringify(mixedEmojiChunks) === JSON.stringify(expectedMixedChunks));
+const mixedEmojiChunksGraphemes = chonkGraphemes(mixedEmojiString, 2);
+console.assert(JSON.stringify(mixedEmojiChunksGraphemes) === JSON.stringify(expectedMixedChunks),
+               "chonkGraphemes should correctly chunk mixed complex emojis");
 
 // Error test
 let hasError = false;
@@ -56,6 +70,15 @@ console.assert(hasError);
 
 hasError = false;
 try { chonk([1, 2, 3], 0); } catch (e) { hasError = true; }
+console.assert(hasError);
+
+// Error test for chonkGraphemes
+hasError = false;
+try { chonkGraphemes(null, 3); } catch (e) { hasError = true; }
+console.assert(hasError);
+
+hasError = false;
+try { chonkGraphemes([1, 2, 3], 0); } catch (e) { hasError = true; }
 console.assert(hasError);
 
 // AsyncIterable test

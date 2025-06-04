@@ -38,7 +38,7 @@
   "homepage": "https://github.com/ushakov-igor/chonkify#readme",
   "scripts": {
     "test": "node test/basic.test.js",
-    "minify": "terser src/index.js -o index.js --module --ecma 2020 --compress passes=2,toplevel,unsafe_arrows,arrows --format comments=false",
+    "minify": "terser src/index.js -o index.js --module --ecma 2020 --compress passes=3,toplevel,unsafe_arrows,arrows,pure_getters=true,drop_console=true,collapse_vars=true,sequences=true,booleans=true,reduce_vars=true --mangle --format comments=false,beautify=false",
     "prepublishOnly": "npm run minify",
     "prepare": "husky"
   },

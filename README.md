@@ -20,23 +20,26 @@ npm install chonkify
 
 - **Works with everything:** Array, String, Buffer, Set, Map, Array-like, TypedArray
 - **Supports AsyncIterable** (`for await`)
-- **Correctly handles Unicode emoji** and complex symbols 👨‍👩‍👧‍👦 🏳️‍🌈 🎉
-- **Minimal size:** core just 870 bytes, entire package ~5.5 kB
+- **UTF-16 code points and Unicode graphemes support 👨‍👩‍👧‍👦🏳️‍🌈** 
+- **Minimal size:** core just 1103 bytes, entire package ~5.7 kB
 - **Zero dependencies**
 - **ESM-first, TypeScript-ready**
 
 ## 🧪 Usage
 
 ```js
-import { chonk, chonkAsync } from 'chonkify';
+import { chonk, chonkAsync, chonkGraphemes } from 'chonkify';
 
 // Basic examples
 chonk([1, 2, 3, 4], 2); // [[1, 2], [3, 4]]
 chonk('abcdef', 2);     // ['ab', 'cd', 'ef']
 
-// Unicode emoji support
-chonk('👍👌✌️😀', 2);  // ['👍👌', '✌️😀']
-chonk('👨‍👩‍👧‍👦🏳️‍🌈', 1); // ['👨‍👩‍👧‍👦', '🏳️‍🌈']
+// Standard chonk uses UTF-16 code points (like standard JS)
+chonk('👍👌✌️😀', 2);  // May split emojis incorrectly
+
+// Use chonkGraphemes for proper emoji support
+chonkGraphemes('👍👌✌️😀', 2);  // ['👍👌', '✌️😀']
+chonkGraphemes('👨‍👩‍👧‍👦🏳️‍🌈', 1); // ['👨‍👩‍👧‍👦', '🏳️‍🌈']
 
 // Async usage:
 for await (const group of chonkAsync(fetchLines(), 100)) {
@@ -48,10 +51,22 @@ for await (const group of chonkAsync(fetchLines(), 100)) {
 
 ### `chonk(iterable, size)`
 
-Splits an iterable into groups of the specified size.
+Splits an iterable into groups of the specified size. For strings, splits by UTF-16 code points (standard JavaScript behavior).
 
 ```js
 chonk([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
+```
+
+### `chonkGraphemes(iterable, size)`
+
+Same as `chonk()` but for strings, splits by Unicode grapheme clusters instead of code points. This correctly handles emoji and complex symbols like family emojis and flags.
+
+```js
+// Standard chonk may split complex emojis incorrectly
+chonk('👨‍👩‍👧‍👦', 1); // May return multiple chunks
+
+// chonkGraphemes correctly handles complex emoji
+chonkGraphemes('👨‍👩‍👧‍👦', 1); // ['👨‍👩‍👧‍👦']
 ```
 
 ### `chonkAsync(asyncIterable, size)`
