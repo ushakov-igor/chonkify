@@ -21,7 +21,7 @@ npm install chonkify
 - **Works with everything:** Array, String, Buffer, Set, Map, Array-like, TypedArray
 - **Supports AsyncIterable** (`for await`)
 - **UTF-16 code points and Unicode graphemes support 👨‍👩‍👧‍👦🏳️‍🌈** 
-- **Minimal size:** core just 1103 bytes, entire package ~5.7 kB
+- **Minimal size:** core just 1103 bytes, entire package ~7 kB
 - **Zero dependencies**
 - **ESM-first, TypeScript-ready**
 
